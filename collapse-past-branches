@@ -1,0 +1,48 @@
+#!/usr/bin/env perl
+use strict;
+use warnings;
+
+use Cwd qw(realpath);
+use File::Basename;
+my $BASE_DIR = dirname realpath __FILE__;
+
+my %proper_branch;
+
+my %proper_version;
+
+open my $fh, '-|', 'git', 'branch', '-a';
+while ( my $line = <$fh> ) {
+    next
+        unless $line =~ /\@/;
+
+    $line =~ s/^\s+//;
+    $line =~ s/\s+$//;
+
+    my $raw_branch = $line;
+    my ($base_branch, $rev) = split /\@/, $raw_branch, 2;
+
+    print "base branch $base_branch\n";
+    print "this branch $raw_branch\n";
+    print "my rev $rev\n";
+    $proper_version{$base_branch} ||= get_rev($base_branch);
+    print "existing rev $proper_version{$base_branch}\n";
+    if ($proper_version{$base_branch} > $rev) {
+        print "greater\n";
+        next;
+    }
+    print "less, using this branch\n";
+    $proper_version{$base_branch} = $rev;
+    $proper_branch{$base_branch} = $raw_branch;
+}
+close $fh;
+
+use Data::Dumper;
+print Dumper(\%proper_branch);
+
+sub get_rev {
+    my $branch = shift;
+    my $rev = `git cat-file commit $branch | grep git-svn-id | cut -d\@ -f2 | cut -d' ' -f1`;
+    chomp $rev;
+    return $rev;
+}
+

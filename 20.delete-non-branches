@@ -1,0 +1,15 @@
+#!/usr/bin/env perl
+
+use Cwd qw(realpath);
+use File::Basename;
+my $BASE_DIR = dirname realpath __FILE__;
+
+my @branches = `git branch -r | cut -c3-`;
+chomp @branches;
+
+for my $branch ( @branches ) {
+    if ( system "git show $branch:lib/DBIx/Class.pm >/dev/null 2>/dev/null" ) {
+        system "$BASE_DIR/kill-svn-branch $branch";
+    }
+}
+

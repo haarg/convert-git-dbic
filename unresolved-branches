@@ -1,0 +1,40 @@
+#!/usr/bin/env perl
+
+use Cwd qw(realpath);
+use File::Basename;
+my $BASE_DIR = dirname realpath __FILE__;
+
+my @branches = `git branch | cut -c3-`;
+for ( @branches ) { s/^\s+//; s/\s+$//; };
+
+my %current_branches = map { $_ => 1 } qw(
+    async_storage
+    dbicadmin-non-versioned
+    extended_rels
+    group_by_consistency
+    manual
+    master
+    mc_optimizations
+    multi_update
+    mysql_grant_privileges_sketch
+    oracle_hierarchical_queries_rt39121
+    order_by_func
+    pg_cursors
+    prefetch
+    prepare_cached
+    resultset-remove-columns
+    rs_UD_cleanup
+    run_file_against_storage
+    strptime_parser_maker
+    test_class
+    try-tiny
+    view-deps
+    xt_tests
+);
+
+for my $branch ( @branches ) {
+    next
+        if $current_branches{$branch};
+    print "$branch\n";
+}
+

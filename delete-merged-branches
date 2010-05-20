@@ -1,0 +1,13 @@
+#!/bin/sh
+
+BASE_DIR=$(cd $(dirname $0); pwd)
+
+# remove merged branches
+git for-each-ref --format='%(refname)' refs/heads | while read branch; do
+    git rev-parse --quiet --verify "$branch" || continue # make sure it still exists
+    git symbolic-ref HEAD "$branch"
+    git branch -d $( git branch --merged | grep -v '^\*' )
+done
+
+git checkout master
+

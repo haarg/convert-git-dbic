@@ -1,0 +1,36 @@
+#!/usr/local/bin/perl
+use strict;
+use warnings;
+
+use Cwd qw(realpath);
+use File::Basename;
+my $BASE_DIR = dirname realpath __FILE__;
+
+use File::Path qw(rmtree);
+
+kill_svn_branch(@ARGV);
+
+sub kill_svn_branch {
+    my $io;
+    my @refs;
+    for my $branch (@_) {
+        $branch =~ s{^remotes/}{};
+        system "git branch -r -D $branch";
+        rmtree(".git/svn/refs/remotes/$branch");
+        open $io, '<', '.git/info/refs';
+        @refs = <$io>;
+        close $io;
+        @refs = grep { !m{\srefs/remotes/$branch$} } @refs;
+        open $io, '>', '.git/info/refs';
+        print {$io} @refs;
+        close $io;
+        open $io, '<', '.git/packed-refs';
+        @refs = <$io>;
+        close $io;
+        @refs = grep { !m{\srefs/remotes/$branch$} } @refs;
+        open $io, '>', '.git/packed-refs';
+        print {$io} @refs;
+        close $io;
+    }
+}
+

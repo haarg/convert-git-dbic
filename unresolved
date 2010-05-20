@@ -1,0 +1,24 @@
+# unknown
+doc_mods # deleted at 5019
+dts-in-search # deleted at 6575
+find_changes # deleted at 1485
+inflate_result # deleted at 9107
+multi_stuff # deleted at 6533
+multicreate # deleted at 5650
+pg-bytea # deleted at 2996
+release_0.080 # deleted at 5957
+replication_transaction_fix # deleted at 7011
+stopgap # deleted at 5664
+sybase_insert_bulk # deleted at 7708
+sybase_noquote # deleted at 6516
+top_limit_tweaks # deleted at 6416
+view_support # deleted at 5160
+views_support # deleted at 5658
+ordered_handle_updates # deleted at 3004
+
+# merged
+subquery # deleted at 6148
+
+
+# 'sync to trunk'
+# 'Merged in all changes from trunk to current point'

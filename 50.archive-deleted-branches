@@ -1,0 +1,34 @@
+#!/usr/bin/env perl
+use strict;
+use warnings;
+
+use Cwd qw(realpath);
+use File::Basename;
+my $BASE_DIR = dirname realpath __FILE__;
+
+my $branches = <<'END_BRANCHES';
+    bindtype_ensure_connected       # deleted at 4603
+    bugfix_28451                    # deleted at 5642
+    clean_resultset                 # deleted at 7845
+    disregard_this_branch           # deleted at 7578
+    having_breaks_count             # deleted at 6509
+    hierarchical-queries            # deleted at 6231
+    jdbicompat                      # deleted at 5389
+    rs_subclass                     # deleted at 6427
+    subselects                      # deleted at 7415
+    sybase                          # deleted at 7701
+    test_added_relships             # deleted at 8058
+    top-crap                        # deleted at 6417
+    result_source_sqlt_deploy_hook  # deleted at 5328
+END_BRANCHES
+
+my @branches = split /\n/, $branches;
+for ( @branches ) {
+    s/#.*//;
+    s/^\s+//;
+    s/\s$//;
+    next
+        if $_ eq '';
+    system "git branch -m $_ trash/$_";
+}
+
