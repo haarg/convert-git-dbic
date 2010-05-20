@@ -1,0 +1,24 @@
+#!/usr/bin/env perl
+use strict;
+use warnings;
+
+use Cwd qw(realpath);
+use File::Basename;
+my $BASE_DIR = dirname realpath __FILE__;
+
+my $branches = <<'END_BRANCHES';
+    inflate_result                  # deleted at 9107
+    pg-bytea                        # deleted at 2996
+    replication_transaction_fix     # deleted at 7011
+END_BRANCHES
+
+my @branches = split /\n/, $branches;
+for ( @branches ) {
+    s/#.*//;
+    s/^\s+//;
+    s/\s$//;
+    next
+        if $_ eq '';
+    system "git branch -m $_ trash/$_";
+}
+

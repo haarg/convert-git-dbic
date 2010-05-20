@@ -1,24 +1,50 @@
 # unknown
-doc_mods # deleted at 5019
-dts-in-search # deleted at 6575
-find_changes # deleted at 1485
-inflate_result # deleted at 9107
-multi_stuff # deleted at 6533
-multicreate # deleted at 5650
-pg-bytea # deleted at 2996
-release_0.080 # deleted at 5957
-replication_transaction_fix # deleted at 7011
-stopgap # deleted at 5664
-sybase_insert_bulk # deleted at 7708
-sybase_noquote # deleted at 6516
-top_limit_tweaks # deleted at 6416
-view_support # deleted at 5160
-views_support # deleted at 5658
-ordered_handle_updates # deleted at 3004
 
-# merged
-subquery # deleted at 6148
+# has stuff in it, don't know state
+find_changes                # deleted at 1485
 
+# has stuff
+multicreate                 # deleted at 5650
+
+# has stuff
+stopgap                     # deleted at 5664
+
+# merged into top_limit_altfix
+top_limit_tweaks            # deleted at 6416
+
+# has stuff
+view_support                # deleted at 5160
+
+# has one real commit, r5050
+views_support               # deleted at 5658
+
+# merged in r3003
+ordered_handle_updates      # deleted at 3004
+
+# merged into sybase_bulkinsert_support
+sybase_insert_bulk          # deleted at 7708
+
+# one commit, r5683
+sybase_noquote              # deleted at 6516
+
+# from stopgap
+release_0.080               # deleted at 5957
+
+# lots of merges into
+# last relevant rev is r5843
+multi_stuff                 # deleted at 6533
+
+# one commit, r6523
+dts-in-search               # deleted at 6575
+
+# merged, then re-merged into a different branch
+subquery  # deleted at 6148
+
+# merged in r5012, 5013
+# deleted at 5019
+doc_mods
 
 # 'sync to trunk'
 # 'Merged in all changes from trunk to current point'
+# sybase
+# 0.08 stuff, mst's merge
