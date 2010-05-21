@@ -117,6 +117,7 @@ acmoore = Andrew Moore <amoore@cpan.org>
 nilsonsfj = Nilson Santos Figueiredo Júnior <nilsonsfj@cpan.org>
 dduncan = Darren Duncan <darren@darrenduncan.net>
 mo = Moritz Onken <onken@netcubed.de>
+amiri = Amiri Barksdale <amiribarksdale@gmail.com>
 
 # mailing lists
 bkirkbri = Brian Kirkbride <brian.kirkbride@deeperbydesign.com>
@@ -126,17 +127,19 @@ ijw = Ian Wells <ijw@cack.org.uk>
 
 # Github
 moritz = Moritz Lenz <moritz@faui2k3.org>
+dandv = Dan Dascalescu <ddascalescu+github@gmail.com>
 
 # Github with no name
 milki = milki <milki@rescomp.berkeley.edu>
+
+# CPAN
+edenc = Eden Cardim <edencardim@gmail.com>
 
 # POD Names with no login
 # Todd Lipcon
 # Tom Hukins
 
 # PAUSE with no email
-edenc = Eden Cardim <edenc@dev.catalystframework.org>
-dandv = Dan Dascalescu <dandv@dev.catalystframework.org>
 moses = Jose Moises <moses@dev.catalystframework.org>
 
 # POD with no email
@@ -150,4 +153,3 @@ g = g <g@dev.catalystframework.org>
 pcc = pcc <pcc@dev.catalystframework.org>
 # Josef Karthauser ?
 josefk = josefk <josefk@dev.catalystframework.org>
-
