@@ -1,0 +1,58 @@
+10      7a3edd5 Fix two aliasing bugs: remove the alias when provided to new_result and add the alias to the input query if we're using it (regression from 0.06)
+10      9a3f514 substantially reduced ping count, dynamic cursors support for mssql through odbc
+10      beb88a9 Oops, deploy only drops tables if you tell it to.. Also add sizes to varchar fields in dbictest schema
+10      ce4dc7a - Some tweaks to Componentised, many_to_many helper from abraxxa
+10      e1fb200 Add sqlabstract tests..
+10      fd6334e infect the storage subdrivers
+11      0a06416 IC::DT changes: Switch SQLite storage to DT::F::SQLite Fix exception when undef_if_invalid and timezone are both set on a column Split t/89inflate_datetime into separate tests Adjust makefile author dependencies
+11      376ace3 - Factored common cdbi rel features out into Relationship:: packages
+11      4de21f6 Merge some cleanups from the prefetch branch
+11      c6a9971 - merge resultset branch through revision 371
+12      16c5818 refactor part 2
+12      3ad4b0e RT45195 various indexer fixes
+12      3ba3c1a Fixes to tests so that they pass.
+12      4693e0a - DBIx::Class is now a component loader
+12      7494248 Support for relationship attributes in many_to_many accessors. Merge new where condition, old where condition, cond in ResultSet::search_rs Collapse cond in ResultSet::new_result so that it doesn't try to create columns with names like "-and". Add a bunch of tests for the where condition things, which also happen to require the cond collapsing. Create supporting classes and associated tables for these tests.
+12      90f7029 - Now passing four more tests, has_a and has_many compliance extended
+12      9cb9ee7 - has_a works
+12      b5696bb Some testdb changes and alignment, preparing for test refactor branch
+12      d44084b added ensure_class_loaded method to Componentized, which should fix problems with nonexistent classes referenced in relationships going undetected
+12      dbb88ac yes, I didn't get the merge quite right. again.
+12      df8c0fd - AutoUpdate, add_constructor, a toy set_sql emulator, object index stubs and destroy warnings. Working on stringify
+12      ec23734 Removed Class::Data::Accessor and DBIx::Class::AccessorGrouped and replaced with Class::Accessor::Grouped.
+13      06d7c14 Caelum was right to make _get_dbh private - reverting (and some code refactoring)
+13      14498aa re-word options/code/pod to be less confusing wrt ResultSource vs source-definition class/file
+13      3e4e005 - Fixed DBICTest Schema class names, added class_resolver system to make them work
+13      5803bfb - Shoved Class::Data::Inheritable into DBIx::Class, more stuff works now
+13      9c12dd2 Dumper follies
+13      a3c5d92 merged recent -current changes into this branch
+13      d8a0556 - Mostly refactored everything to select/update/delete off storage handle
+13      f26a6ee Incorporate changes in -current.
+14      2f1b743 fix related resultsets and multi-create
+14      7451293 Backout sybase changes
+14      c7b6c57 Reverted accidental 'svk pull' from inside mirrored checkout. Note to self: Don't checkout anything from //mirror - Even if you have no need to edit it...
+14      ca451d8 add_relationship, relationship_info, relationships moved to ResultSource
+15      0fc1c00 rename Source to Result, because that is what it should be called
+15      5d71a4f Part one of the sybase work by Caelum (mostly reviewed)
+15      bfb5d0d Renamed DBIx::Class::PK's retrieve() as find() Renamed DBIx::Class::Table's retrieve_from_sql() as search_literal() Renamed DBIx::Class::Table's count_from_sql() as count_literal() Removed DBIx::Class::Table->retrieve_all() Added DBIx::Class::CDBICompat::Retrieve to account for method renaming Updated affected test cases
+15      ceb8567 - Schema support added, DBICTest refactored to use it
+15      d7ac734 - Updated main docs, altered mail address in POD for 0.01
+15      f5ca2b9 Move relationships out of Relationships.pm and in to the respective classes.  Removed references to PK::Auto.
+15      f7a3c12 Shovelling PK::Auto stuff where it belongs..
+17      a074ae1 - Added has_column and column_info methods
+18      0a699b8 - First of a two-parter :)
+18      16de405 - Extra files for relationships, has_many support
+18      6ea5740 Added use strict / use warnings everywhere it was missing
+18      e832fa6 - item => head2 in docs
+19      4d5e9bb moved tests to compose_namespace instead of compose_connection, marked compose_connection as deprecated, undocumented DB.pm
+19      4d84d2d - Broke everything (C3 branch)
+19      53640e2 Fixes to massive breakage introduced by 5948  ribasushi--
+19      6bb0160 All expected evals converted to try, except where no test is done, runtime evaluation, or base perl (such as "require"). Only one test failure due to string difference in output
+19      d0871f4 - merge resultset branch through revision 378
+21      4d58911 - We can now generate our own test schema
+22      a1b0d56 made cdbi-t optional
+27      1f52e02 load JDBICompat at the top of all JDBI tests
+34      6fa23eb Initial insert of the DBIx::Class::Field sub-project into branch "DBIx-Class-Field-integration"
+37      c2c9ebb * checkpointing. basic create/update/delete works with DBIC
+45      461fc6b initial merge of Schwern's CDBICompat work, with many thanks
+61      81f992d * Initial commit of the Jifty::DBI codebase before we start renaming and breaking things

@@ -28,6 +28,7 @@ for my $branch (@branches) {
 }
 
 for ( @useless ) {
-    system "git branch -D $_"
+    print "Useless: $_\n";
+    #system "git branch -D $_";
 }
 

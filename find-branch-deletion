@@ -4,23 +4,35 @@ use warnings;
 
 use Cwd qw(realpath);
 use File::Basename;
+use POSIX qw(ceil);
 my $BASE_DIR = dirname realpath __FILE__;
 
-my @branches = `$BASE_DIR/unresolved-branches`;
-chomp @branches;
+my @branches = @ARGV;
+if (! @branches) {
+    @branches = `$BASE_DIR/unresolved-branches`;
+    chomp @branches;
+}
+
+my $max_rev = `svn info file://$BASE_DIR/svn-mirror | grep Revision | cut -d' ' -f2`;
+chomp $max_rev;
 
 BRANCH: for my $branch (@branches) {
     my $url = `git cat-file commit $branch | tail -1 | cut -d' ' -f2`;
     chomp $url;
     my ($path, $rev) = split /@/, $url;
 
+    $path =~ s{http://dev.catalyst.perl.org/repos/bast/}{file://$BASE_DIR/svn-mirror/};
+
+    my $low_rev = $rev;
+    my $high_rev = $max_rev;
     while (1) {
-        $rev++;
-        my $res = system "svn log -l1 $path\@$rev >/dev/null 2>/dev/null";
-        if ($res) {
-            printf "-%40s# deleted at %s\n", $branch, $rev;
+        my $test_rev = ceil( ($low_rev + $high_rev) / 2 );
+        if ($test_rev == $low_rev || $test_rev == $high_rev) {
+            printf "%-40s# deleted at %s\n", $branch, $test_rev;
             next BRANCH;
         }
+        my $res = system "svn log -l1 $path\@$test_rev >/dev/null 2>/dev/null";
+        ($res ? $high_rev : $low_rev) = $test_rev;
     }
 }
 

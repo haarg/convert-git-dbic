@@ -1,0 +1,53 @@
+#!/usr/bin/env perl
+use strict;
+use warnings;
+
+use Cwd qw(realpath);
+use File::Basename;
+my $BASE_DIR = dirname realpath __FILE__;
+
+my $branches = <<'END_BRANCHES';
+    inflate_result
+    pg-bytea
+    replication_transaction_fix
+    sybase
+    test_tweaks
+    test_coverage
+    alias_length_limit
+    bind_types
+    bugfix#28451
+    stopgap
+    release_0.080
+    subclassed_rsset
+    storage-ms-access
+    sqlt_tests_refactor
+    rs_col_bugfix
+    replication_dedux
+    port_to_dbix_connector
+    pluggable-sqlt-integration
+    param_bind
+    ordered_multicolumn
+    ordered_handle_updates
+    joined_count
+    mssql_switch_to_RNO
+    identity_cleanup
+    fixtures
+    file_column
+    ensure_source_loaded
+    empty_rs
+    compose_stuff
+    rs_storage_pod_fix
+    find_compat
+END_BRANCHES
+
+my @branches = split /\n/, $branches;
+for ( @branches ) {
+    s/^#.*//;
+    s/\s+#.*//;
+    s/^\s+//;
+    s/\s+$//;
+    next
+        if $_ eq '';
+    system "git branch -D '$_'";
+}
+

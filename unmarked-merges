@@ -1,0 +1,77 @@
+b7b3076 Botched merge
+a001364 Merge fallout
+0208ae3 Remove useless empty merge call and test generated sql more extensively
+139f351 set behavior for Hash::Merge in ::DBI::Replicated, otherwise it uses the global setting
+d67d656 Botched merge
+22f1c51 use OO interface of Hash::Merge for ::DBI::Replicated
+3ce5e1e Merge fix of RT54039 from prefetch branch
+976a782 Merge some obsolete code cleanup from the prefetch branch
+4de21f6 Merge some cleanups from the prefetch branch
+5a1106d Botched merge (tests still fail)
+111d567 Rollback all bulk insert code before merge
+1867a6e Release 0.08109
+6b6ea4a Disambiguate POD
+443e688 Pre-release branch
+11f1d9e Merge fallout
+b8bc290 Remove merged branch
+24c4085 fix merge fallout
+bc479db Remove merged branch, remove two never-committed-to branches, move around some branches that seem abandoned
+06ae209 Remove merged branch, remove two never-committed-to branches, move around some branches that seem abandoned
+d1b9d98 Remove merged branch, remove two never-committed-to branches, move around some branches that seem abandoned
+5fa7b2c Remove merged branch, remove two never-committed-to branches, move around some branches that seem abandoned
+9c0774c undo that attributes merge stuff
+30961c2 merge in some more MSSQL code, including odbc dynamic cursor support
+5290de7 merge on_connect_call updates
+9a4942b Test and merge fixes
+403c2bd Merge badness
+611f1e1 rename and document dt setup method, will be an on_connect_call at later merge point
+6ff1f08 Fix fallout from svn merge - please don't do it Also rid of evil tab infestation
+e5de299 Fix fallout from another botched merge (I suck, part 2)
+53b8761 Add files dropped by the screwed up merge - I suck
+8e32472 Fixes for the diamond-relationship prefetch/join problem The core of the issue was that resolve_prefetch calculated duplicate join alias numbers separate from resolve_join In order to solve this, now the only join alias calculation happens in resolve_join (with prefetch being always merged as extra joins), and each join arrayref in from is labeled with the full relationship chain from me to the particular join. Then resolve_prefetch has to walk this chain and pull the necessary alias in order to generate the correct select
+8f29ef1 minor replication changes - use a real hash merge, clarify master_read_weight, really done with this now.
+134f278 Changes for count_distinct branch merge
+2d3e78f Added synopsis of merged oracle-tweaks branch to Changes
+bb29cd6 Whops, forgotten post-merge tweaks
+ac25ebe Trying to untangle failing merge (whitespace change)
+60ea5d0 Changes, remove merged branch
+361bc52 ::DBI:Replicated - merge connect_info from master to replicants
+8df4e40 make sure merge bind test for aformentioned TODO count_joined test for a little while
+45718b8 Fix botched merge again - sorry r5959-5956 are actually a single commit
+f754fe0 Sloppy merge - adding imlari's fix from r5902
+0f138a1 Add doc on how conditions and attrs are merged when chaining.
+f139294 Remove erroneously merged file
+92f2819 Clarify sybase/nobindvars problem (should have never merged in the 1st place)
+c6cc219 Reinstate examples after botched merge
+2c22654 somehow i messed up the merge. this fixes it
+1e56294 rip away a horribly wrong create_via_update test (will pass when multicreate is merged)
+51bcc5b Rename _merge_attr args to something saner than $a, $b
+9b7ce04 Blindly silence a weird warning within a TODO in t/47bind_attribute.t. Hopefully when the TODO is resolved, it will be obvious what was causing it Merge the t/93single_accessor_object.t fix from trunk
+5c638e9 Merge 0.09's savepoint branch
+4ac5457 Fix the merge with txn_scope_guard() and put the necessary =cut in.
+c09113d manual merge for deferrable changes from trunk
+3e5e32c  r54482@windhund:  schwern | 2008-02-12 02:32:29 -0800  Merge HasA, HasMany and MightHave into one file, Relationships, for easier  development.
+5c746af fixed _merge_attr bug
+461fc6b initial merge of Schwern's CDBICompat work, with many thanks
+f066e88 reverting changeset 3131, probably needs to be fixed in another way, and it overlaps a different possibly bad merge resolution that needs to be fixed as well
+c27897e post-merge fixups
+87572b5 Merge from current and fixed issue when a column has multiple bind values.
+7494248 Support for relationship attributes in many_to_many accessors. Merge new where condition, old where condition, cond in ResultSet::search_rs Collapse cond in ResultSet::new_result so that it doesn't try to create columns with names like "-and". Add a bunch of tests for the where condition things, which also happen to require the cond collapsing. Create supporting classes and associated tables for these tests.
+dbb88ac yes, I didn't get the merge quite right. again.
+6e83557 minor fixup to _merge_attr
+59737fb added entry to Changes for recent merge alterations
+bcde87c fix for prefetch bug in _merge_attr
+770fa84 Delete t/run/ and t/helperrels/ so that the reorganize_tests branch can merge in easly.
+226ae55 fixed screwed merge of Storage::DBI (my fault :)
+a3c5d92 merged recent -current changes into this branch
+b7153f7 Fixed up tests post-merge
+60da08d Test fixup from previous merge: - Move source_name tests above cascade_delete checks to match expectations (note: ArtistUndirectedMap data causes two artists to be deleted) - Move tests at end into blocks to separate them a little better
+d82a5a9 Post-merge fixups
+e1f9a3a damn merges eating patch monkeys
+20354eb - Fixed up brekage in test schema from merge
+d0871f4 - merge resultset branch through revision 378
+c6a9971 - merge resultset branch through revision 371
+66a3d7d - Merged patched from andyg to throw useful errors during relationship loading
+22bcb24 merged in hartmeier quickstart updated attributes.
+6d87161 Merged andyg's fixes to joins and joins tests. Added -sql_type => 'xxx' option, added test.
+2c8b134 - Merged dkubb's Module::Find code into Schema->load_classes

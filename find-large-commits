@@ -1,0 +1,6 @@
+#!/bin/sh
+
+git rev-list --all --no-merges | while read commit; do
+    CHANGED_FILES=$(git diff-tree --shortstat --cc $(git show -s --pretty='format:%H %P' $commit | xargs git show -s --pretty=format:%T) | cut -d' ' -f2)
+    [[ $CHANGED_FILES -ge 10 ]] && echo -e "$CHANGED_FILES\t$(git show -s --oneline $commit)"
+done

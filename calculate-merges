@@ -50,6 +50,11 @@ for my $commit (@merges) {
         warn "can't find parent commit for $commit - r$parent_rev\n";
         next;
     }
-    system "git show -s --format='%H %P $parent_commit' $commit";
+    my $commit_hashes = `git show -s --format='%H %P' $commit`;
+    chomp $commit_hashes;
+    my ($commit_hash, @parent_hashes) = split /\s+/, $commit_hashes;
+    if (! grep { $parent_commit eq $_ } @parent_hashes ) {
+        print join(q{ }, $commit_hash, @parent_hashes, $parent_commit) . "\n";
+    }
 }
 

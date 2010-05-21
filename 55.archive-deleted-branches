@@ -16,10 +16,16 @@ my $branches = <<'END_BRANCHES';
     jdbicompat                      # deleted at 5389
     rs_subclass                     # deleted at 6427
     subselects                      # deleted at 7415
-    sybase                          # deleted at 7701
     test_added_relships             # deleted at 8058
     top-crap                        # deleted at 6417
     result_source_sqlt_deploy_hook  # deleted at 5328
+    dts-in-search                   # deleted at 6575
+    views_support                   # deleted at 5658
+    columns_info_for                # deleted at 7415
+    mysql-nested-commits            # deleted at 7415
+    filter_columns                  # deleted at 7415
+    DBIx-Class-Field-integration    # deleted at 957
+    multi_stuff                     # deleted at 6533
 END_BRANCHES
 
 my @branches = split /\n/, $branches;

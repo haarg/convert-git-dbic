@@ -1,0 +1,28 @@
+#!/usr/bin/env perl
+use strict;
+use warnings;
+
+use Cwd qw(realpath);
+use File::Basename;
+my $BASE_DIR = dirname realpath __FILE__;
+
+use POSIX qw(strftime);
+my $users = do $BASE_DIR . '/author-data.pl';
+
+my $commit = $ENV{GIT_COMMIT};
+my $commit_message = `git show -s --pretty=raw $commit`;
+
+my @find = $commit_message =~ /r\d+\@\w+:\s+(\w+)\s+\|\s+([0-9:+ -]+)/g;
+if (@find == 2) {
+    my @date = split /[ :-]/, $find[1];
+    my $tz = pop @date;
+    @date = reverse @date;
+    $date[5] -= 1900;
+    my $date = strftime('%s', @date);
+    print "export GIT_AUTHOR_DATE='$date $tz'\n";
+    if ($users->{$find[0]}) {
+        print "export GIT_AUTHOR_NAME='$users->{$find[0]}{name}'\n";
+        print "export GIT_AUTHOR_EMAIL='$users->{$find[0]}{email}'\n";
+    }
+}
+

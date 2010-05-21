@@ -115,6 +115,14 @@ wintrmute = Toby Corkindale <tjc@cpan.org>
 renormalist = Steffen Schwigon <schwigon@cpan.org>
 acmoore = Andrew Moore <amoore@cpan.org>
 nilsonsfj = Nilson Santos Figueiredo Júnior <nilsonsfj@cpan.org>
+dduncan = Darren Duncan <darren@darrenduncan.net>
+mo = Moritz Onken <onken@netcubed.de>
+
+# mailing lists
+bkirkbri = Brian Kirkbride <brian.kirkbride@deeperbydesign.com>
+antirice = Matt LeBlanc <antirice@gmail.com>
+ned = Neil de Carteret <n3dst4@gmail.com>
+ijw = Ian Wells <ijw@cack.org.uk>
 
 # Github
 moritz = Moritz Lenz <moritz@faui2k3.org>
@@ -134,16 +142,13 @@ moses = Jose Moises <moses@dev.catalystframework.org>
 # POD with no email
 sc_ = Just Another Perl Hacker <sc_@dev.catalystframework.org>
 jesper = Jesper Krogh <jesper@dev.catalystframework.org>
-ned = Neil de Carteret <ned@dev.catalystframework.org>
 
 # logins with no info found
-bkirkbri = bkirkbri <bkirkbri@dev.catalystframework.org>
-antirice = antirice <antirice@dev.catalystframework.org>
-josefk = josefk <josefk@dev.catalystframework.org>
 grink1tt3n = grink1tt3n <grink1tt3n@dev.catalystframework.org>
 tomboh = tomboh <tomboh@dev.catalystframework.org>
 g = g <g@dev.catalystframework.org>
 pcc = pcc <pcc@dev.catalystframework.org>
-mo = mo <mo@dev.catalystframework.org>
-ijw = ijw <ijw@dev.catalystframework.org>
-dduncan = dduncan <dduncan@dev.catalystframework.org>
+
+# Josef Karthauser ?
+josefk = josefk <josefk@dev.catalystframework.org>
+
