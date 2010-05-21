@@ -9,7 +9,7 @@ my $BASE_DIR = dirname realpath __FILE__;
 use POSIX qw(strftime);
 my $users = do $BASE_DIR . '/author-data.pl';
 
-my $commit = $ENV{GIT_COMMIT};
+my $commit = $ENV{GIT_COMMIT} || exit;
 my $commit_message = `git show -s --pretty=raw $commit`;
 
 my @find = $commit_message =~ /r\d+\@\w+:\s+(\w+)\s+\|\s+([0-9:+ -]+)/g;

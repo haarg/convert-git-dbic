@@ -38,15 +38,27 @@ if ( $msg =~ /^\s*r\d+\@.*\(orig r\d+\):/ ) {
 sub format_branch {
 	my $commit = shift;
 
-	my $body = `git show -s --pretty='format:%b' $commit`;
+	my $body = `git show -s --pretty='format:%s%n%b' $commit`;
 
-	if ( $body =~ m{git-svn-id: .*/branches/(.*?)\@} ) {
-		return "'$1'";
-	} elsif ( $body =~ m{git-svn-id: .*/trunk\@} ) {
-		return "'trunk'";
-	} elsif ( $body =~ /\@r(\d+)/ ) {
-		return $1;
-	} else {
-		die "unknown rev for $commit";
-	}
+    if ( $body =~ m{git-svn-id: .*/branches/DBIx-Class/(.*?)\@} ) {
+        return "'$1'";
+    }
+    elsif ( $body =~ m{git-svn-id: .*/DBIx-Class/0.08/tags/(.*?)\@} ) {
+        return "'$1'";
+    }
+    elsif ( $body =~ m{git-svn-id: .*/DBIx-Class/0.08/branches/_abandoned_but_possibly_useful/(.*?)\@} ) {
+        return "'$1'";
+    }
+    elsif ( $body =~ m{git-svn-id: .*/branches/(.*?)\@} ) {
+        return "'$1'";
+    }
+    elsif ( $body =~ m{git-svn-id: .*/trunk} ) {
+        return "'trunk'";
+    }
+    elsif ( $body =~ /\@r(\d+)/ ) {
+        return $1;
+    }
+    else {
+        die "unknown rev for $commit";
+    }
 }
