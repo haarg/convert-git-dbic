@@ -25,3 +25,4 @@ git log --format="%H %P $(git rev-parse sybase_insert_bulk)" --grep='DBIx-Class/
 git log --format="%H %P $(git rev-parse DBIx-Class-current)" --grep='trunk/DBIx-Class@3502'
 git log --all --format="%H %P $(git log --all --format='%H' --grep='DBIx-Class/0.08/trunk@5432')" --grep='DBIx-Class/0.08/branches/rt_bug_41083@5437'
 git log --all --format="%H %P $(git log --all --format='%H' --grep='trunk/DBIx-Class@1365')" --grep='branches/DBIx-Class-current@1366'
+git log --all --format="%H %P $(git log --all --format='%H' --grep='branches/DBIx-Class-current@1606')" --grep='DBIx-Class/resultset-new-refactor@1612'
