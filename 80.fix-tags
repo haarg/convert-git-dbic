@@ -1,0 +1,39 @@
+#!/bin/sh
+
+git tag -d vrelease-0.03001
+
+
+git show -s --pretty='format:%s%n%n%b' "v0.08011^^" | \
+    perl -ne 'next if /^git-svn-id:/; $s++, next if /^\s*r\d+\@.*:.*\|/; s/^ // if $s; print' | \
+    env GIT_COMMITTER_NAME="$(  git show -s --pretty='format:%an' "v0.08011^^" )" \
+    GIT_COMMITTER_EMAIL="$( git show -s --pretty='format:%ae' "v0.08011^^" )" \
+    GIT_COMMITTER_DATE="$(  git show -s --pretty='format:%ad' "v0.08011^^" )" \
+    git tag -a -f -F - v0.08011 v0.08011^^
+
+git show -s --pretty='format:%s%n%n%b' "v0.08012^^" | \
+    perl -ne 'next if /^git-svn-id:/; $s++, next if /^\s*r\d+\@.*:.*\|/; s/^ // if $s; print' | \
+    env GIT_COMMITTER_NAME="$(  git show -s --pretty='format:%an' "v0.08012^^" )" \
+    GIT_COMMITTER_EMAIL="$( git show -s --pretty='format:%ae' "v0.08012^^" )" \
+    GIT_COMMITTER_DATE="$(  git show -s --pretty='format:%ad' "v0.08012^^" )" \
+    git tag -a -f -F - v0.08012 v0.08012^^
+
+git show -s --pretty='format:%s%n%n%b' "v0.08013^^" | \
+    perl -ne 'next if /^git-svn-id:/; $s++, next if /^\s*r\d+\@.*:.*\|/; s/^ // if $s; print' | \
+    env GIT_COMMITTER_NAME="$(  git show -s --pretty='format:%an' "v0.08013^^" )" \
+    GIT_COMMITTER_EMAIL="$( git show -s --pretty='format:%ae' "v0.08013^^" )" \
+    GIT_COMMITTER_DATE="$(  git show -s --pretty='format:%ad' "v0.08013^^" )" \
+    git tag -a -f -F - v0.08013 v0.08013^^
+
+git show -s --pretty='format:%s%n%n%b' "v0.08108^" | \
+    perl -ne 'next if /^git-svn-id:/; $s++, next if /^\s*r\d+\@.*:.*\|/; s/^ // if $s; print' | \
+    env GIT_COMMITTER_NAME="$(  git show -s --pretty='format:%an' "v0.08108^" )" \
+    GIT_COMMITTER_EMAIL="$( git show -s --pretty='format:%ae' "v0.08108^" )" \
+    GIT_COMMITTER_DATE="$(  git show -s --pretty='format:%ad' "v0.08108^" )" \
+    git tag -a -f -F - v0.08108 v0.08108^^
+
+git show -s --pretty='format:%s%n%n%b' "v0.08109^" | \
+    perl -ne 'next if /^git-svn-id:/; $s++, next if /^\s*r\d+\@.*:.*\|/; s/^ // if $s; print' | \
+    env GIT_COMMITTER_NAME="$(  git show -s --pretty='format:%an' "v0.08109^" )" \
+    GIT_COMMITTER_EMAIL="$( git show -s --pretty='format:%ae' "v0.08109^" )" \
+    GIT_COMMITTER_DATE="$(  git show -s --pretty='format:%ad' "v0.08109^" )" \
+    git tag -a -f -F - v0.08109 v0.08109^^

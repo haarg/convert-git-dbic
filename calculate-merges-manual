@@ -26,3 +26,5 @@ git log --format="%H %P $(git rev-parse DBIx-Class-current)" --grep='trunk/DBIx-
 git log --all --format="%H %P $(git log --all --format='%H' --grep='DBIx-Class/0.08/trunk@5432')" --grep='DBIx-Class/0.08/branches/rt_bug_41083@5437'
 git log --all --format="%H %P $(git log --all --format='%H' --grep='trunk/DBIx-Class@1365')" --grep='branches/DBIx-Class-current@1366'
 git log --all --format="%H %P $(git log --all --format='%H' --grep='branches/DBIx-Class-current@1606')" --grep='DBIx-Class/resultset-new-refactor@1612'
+git log --all --format="%H %P $(git log --all --format='%H' --grep='DBIx-Class/0.08/trunk@4841')" --grep='DBIx-Class/0.08/branches/warnfree@4842'
+git log --all --format="%H %P $(git log --all --format='%H' --grep='branches/DBIx-Class-current@3006')" --grep='branches/DBIx-Class/param_bind@3012'

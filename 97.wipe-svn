@@ -1,0 +1,11 @@
+#!/bin/sh
+
+BASE_DIR=$(cd $(dirname $0); pwd)
+
+git config --remove-section svn
+git config --remove-section svn-remote
+rm -rf `git rev-parse --git-dir`/svn
+perl -i -ne'next if m{/remotes/svn/}; print' `git rev-parse --git-dir`/info/refs
+perl -i -ne'next if m{/remotes/svn/}; print' `git rev-parse --git-dir`/packed-refs
+rm -rf `git rev-parse --git-dir`/refs/remotes/svn
+
