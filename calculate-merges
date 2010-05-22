@@ -6,7 +6,7 @@ use Cwd qw(realpath);
 use File::Basename;
 my $BASE_DIR = dirname realpath __FILE__;
 
-my @merges = `git log --all --format='%H' --grep='(orig r'`;
+my @merges = `git log --all --no-merges --format='%H' --grep='(orig r'`;
 chomp @merges;
 
 for my $commit (@merges) {
