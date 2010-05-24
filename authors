@@ -118,38 +118,33 @@ nilsonsfj = Nilson Santos Figueiredo Júnior <nilsonsfj@cpan.org>
 dduncan = Darren Duncan <darren@darrenduncan.net>
 mo = Moritz Onken <onken@netcubed.de>
 amiri = Amiri Barksdale <amiribarksdale@gmail.com>
+pcc = Peter Collingbourne <peter@pcc.me.uk>
 
 # mailing lists
 bkirkbri = Brian Kirkbride <brian.kirkbride@deeperbydesign.com>
 antirice = Matt LeBlanc <antirice@gmail.com>
 ned = Neil de Carteret <n3dst4@gmail.com>
 ijw = Ian Wells <ijw@cack.org.uk>
+jesper = Jesper Krogh <jesper@krogh.cc>
+tomboh = Tom Hukins <tom@eborcom.com>
+josefk = Josef Karthauser <joe@tao.org.uk>
 
 # Github
 moritz = Moritz Lenz <moritz@faui2k3.org>
 dandv = Dan Dascalescu <ddascalescu+github@gmail.com>
 
 # Github with no name
-milki = milki <milki@rescomp.berkeley.edu>
+milki = Jonathan Chu <milki@rescomp.berkeley.edu>
 
 # CPAN
 edenc = Eden Cardim <edencardim@gmail.com>
 
-# POD Names with no login
-# Todd Lipcon
-# Tom Hukins
-
-# PAUSE with no email
-moses = Jose Moises <moses@dev.catalystframework.org>
-
-# POD with no email
-sc_ = Just Another Perl Hacker <sc_@dev.catalystframework.org>
-jesper = Jesper Krogh <jesper@dev.catalystframework.org>
+# No real commits:
+sc_ = sc_ <sc_@dev.catalystframework.org>
+moses = moses <moses@dev.catalystframework.org>
 
 # logins with no info found
+# grink1tt3n = Robert Krimen <rkrimen@cpan.org>
 grink1tt3n = grink1tt3n <grink1tt3n@dev.catalystframework.org>
-tomboh = tomboh <tomboh@dev.catalystframework.org>
 g = g <g@dev.catalystframework.org>
-pcc = pcc <pcc@dev.catalystframework.org>
-# Josef Karthauser ?
-josefk = josefk <josefk@dev.catalystframework.org>
+

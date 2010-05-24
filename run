@@ -1,0 +1,11 @@
+#!/bin/sh
+
+BASE_DIR=$(cd $(dirname $0); pwd)
+
+tar xzf $BASE_DIR/svn-imported.tar.gz
+cd DBIx-Class
+
+for step in $BASE_DIR/[1-9]*; do
+    $step
+done
+

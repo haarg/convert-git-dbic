@@ -3,6 +3,5 @@
 BASE_DIR=$(cd $(dirname $0); pwd)
 
 git remote add origin git@github.com:haarg/DBIx-Class.git
-git push origin -f --all
-git push origin -f --tags
+git push origin -f --mirror
 

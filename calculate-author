@@ -27,16 +27,20 @@ if (@find == 2) {
     }
 }
 
-if ( my $u = $users->{$ENV{GIT_AUTHOR_NAME}} ) {
-    $vars{GIT_AUTHOR_NAME} ||= $u->{name};
-    $vars{GIT_AUTHOR_EMAIL} ||= $u->{email};
+if ( $ENV{GIT_AUTHOR_EMAIL} =~ /(.*)\@dev\.catalystframework\.org$/ ) {
+    if ( my $u = $users->{$1} ) {
+        $vars{GIT_AUTHOR_NAME} ||= $u->{name};
+        $vars{GIT_AUTHOR_EMAIL} ||= $u->{email};
+    }
 }
-if ( my $u = $users->{$ENV{GIT_COMMIT_NAME}} ) {
-    $vars{GIT_COMMITTER_NAME} ||= $u->{name};
-    $vars{GIT_COMMITTER_EMAIL} ||= $u->{email};
+if ( $ENV{GIT_COMMITTER_EMAIL} =~ /(.*)\@dev\.catalystframework\.org$/ ) {
+    if ( my $u = $users->{$1} ) {
+        $vars{GIT_COMMITTER_NAME} ||= $u->{name};
+        $vars{GIT_COMMITTER_EMAIL} ||= $u->{email};
+    }
 }
 
 for my $key ( keys %vars ) {
-    print "export $key='$vars{$key}'\n";
+    print "export $key='$vars{$key}';\n";
 }
 

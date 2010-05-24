@@ -8,6 +8,9 @@ my $BASE_DIR = dirname realpath __FILE__;
 
 use File::Path qw(rmtree);
 
+my $GIT_DIR = `git rev-parse --git-dir`;
+chomp $GIT_DIR;
+
 kill_svn_branch(@ARGV);
 
 sub kill_svn_branch {
@@ -15,20 +18,20 @@ sub kill_svn_branch {
     my @refs;
     for my $branch (@_) {
         $branch =~ s{^remotes/}{};
-        system "git branch -r -D $branch";
-        rmtree(".git/svn/refs/remotes/$branch");
+        system 'git', 'branch', '-r', '-D', $branch;
+        rmtree("$GIT_DIR/svn/refs/remotes/$branch");
         open $io, '<', '.git/info/refs';
         @refs = <$io>;
         close $io;
         @refs = grep { !m{\srefs/remotes/$branch$} } @refs;
-        open $io, '>', '.git/info/refs';
+        open $io, '>', $GIT_DIR . '/info/refs';
         print {$io} @refs;
         close $io;
-        open $io, '<', '.git/packed-refs';
+        open $io, '<', $GIT_DIR . '/packed-refs';
         @refs = <$io>;
         close $io;
         @refs = grep { !m{\srefs/remotes/$branch$} } @refs;
-        open $io, '>', '.git/packed-refs';
+        open $io, '>', $GIT_DIR . '/packed-refs';
         print {$io} @refs;
         close $io;
     }

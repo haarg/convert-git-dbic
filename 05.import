@@ -21,7 +21,5 @@ git svn fetch --authors-prog=$BASE_DIR/author-generate
 
 git config --unset svn-remote.svn.rewriteRoot
 git config svn-remote.svn.url http://dev.catalyst.perl.org/repos/bast
-GIT_CONFIG=.git/svn/.metadata git config svn-remote.svn.reposRoot http://dev.catalyst.perl.org/repos/bast
-
-git svn fetch --authors-prog=$BASE_DIR/author-generate
+GIT_CONFIG=$(git rev-parse --git-dir)/svn/.metadata git config svn-remote.svn.reposRoot http://dev.catalyst.perl.org/repos/bast
 
