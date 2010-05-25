@@ -13,21 +13,27 @@ $Data::Dumper::Sortkeys = 1;
 
 my $users = {};
 
-open my $fh, '<', $BASE_DIR . '/authors';
-while (<$fh>) {
-    s/\s*(?:#.*)?$//;
-    s/^\s+//;
-    next
-        if $_ eq '';
-    if ( /(\w+)\s*=\s*(.*?)\s*<([^>]+)>/ ) {
-        my ($user, $name, $email) = ($1, $2, $3);
-        $users->{$user} = {
-            user    => $user,
-            name    => $name,
-            email   => $email,
-        };
+{
+    open my $fh, '<', $BASE_DIR . '/authors';
+    while (<$fh>) {
+        s/\s*(?:#.*)?$//;
+        s/^\s+//;
+        next
+            if $_ eq '';
+        if ( /(\w+)\s*=\s*(.*?)\s*<([^>]+)>/ ) {
+            my ($user, $name, $email) = ($1, $2, $3);
+            $users->{$user} = {
+                user    => $user,
+                name    => $name,
+                email   => $email,
+            };
+        }
     }
+    close $fh;
 }
-
-print Dumper $users;
+{
+    open my $fh, '>', "$BASE_DIR/author-data.pl";
+    print { $fh } Dumper($users);
+    close $fh;
+}
 

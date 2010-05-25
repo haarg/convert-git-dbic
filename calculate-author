@@ -15,12 +15,11 @@ my $commit_message = `git show -s --pretty=raw $commit`;
 my %vars;
 my @find = $commit_message =~ /r\d+\@\w+:\s+(\w+)\s+\|\s+([0-9:+ -]+)/g;
 if (@find == 2) {
-    my @date = split /[ :-]/, $find[1];
-    my $tz = pop @date;
-    @date = reverse @date;
-    $date[5] -= 1900;
-    my $date = strftime('%s', @date);
-    $vars{GIT_AUTHOR_DATE}="$date $tz";
+    my ($date, $time, $tz) = split / /, $find[1];
+    my @date = split /-/, $date;
+    my @time = split /:/, $time;
+    $date[0] -= 1900;
+    $vars{GIT_AUTHOR_DATE} = strftime('%s', (reverse @time), (reverse @date)) . ' ' . $tz;
     if ($users->{$find[0]}) {
         $vars{GIT_AUTHOR_NAME} = $users->{$find[0]}{name};
         $vars{GIT_AUTHOR_EMAIL} = $users->{$find[0]}{email};
