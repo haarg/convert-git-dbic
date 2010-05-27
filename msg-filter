@@ -3,7 +3,11 @@
 use strict;
 use warnings;
 
-my $simplified_merges = do 'simplified-merges.pl';
+use Cwd qw(realpath);
+use File::Basename;
+my $BASE_DIR = dirname realpath __FILE__;
+
+my $simplified_merges = do "$BASE_DIR/cache/simplified-merges.pl";
 my $svn_id;
 my $msg = '';
 

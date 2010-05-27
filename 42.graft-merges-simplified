@@ -40,7 +40,7 @@ chomp (my $GIT_DIR = `git rev-parse --git-dir`);
     $Data::Dumper::Terse = 1;
     $Data::Dumper::Sortkeys = 1;
 
-    open my $fh, '>', "$BASE_DIR/simplified-merges.pl";
+    open my $fh, '>', "$BASE_DIR/cache/simplified-merges.pl";
     print { $fh } Dumper(\%altered);
     close $fh;
 }
