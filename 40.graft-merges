@@ -1,7 +1,0 @@
-#!/bin/sh
-
-BASE_DIR=$(cd $(dirname $0); pwd)
-
-$BASE_DIR/calculate-merges > $(git rev-parse --git-dir)/info/grafts
-$BASE_DIR/calculate-merges-manual >> $(git rev-parse --git-dir)/info/grafts
-

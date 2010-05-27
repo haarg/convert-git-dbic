@@ -5,6 +5,7 @@ use warnings;
 use Cwd qw(realpath);
 use File::Basename;
 my $BASE_DIR = dirname realpath __FILE__;
+chomp (my $GIT_DIR = `git rev-parse --git-dir`);
 
 my @merges = `git log --all --no-merges --format='%H' --grep='(orig r'`;
 chomp @merges;
@@ -53,8 +54,11 @@ for my $commit (@merges) {
     my $commit_hashes = `git show -s --format='%H %P' $commit`;
     chomp $commit_hashes;
     my ($commit_hash, @parent_hashes) = split /\s+/, $commit_hashes;
+
+    open my $fh, '>>', "$GIT_DIR/info/grafts";
     if (! grep { $parent_commit eq $_ } @parent_hashes ) {
-        print join(q{ }, $commit_hash, @parent_hashes, $parent_commit) . "\n";
+        print { $fh } join(q{ }, $commit_hash, @parent_hashes, $parent_commit) . "\n";
     }
+    close $fh;
 }
 

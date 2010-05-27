@@ -1,0 +1,50 @@
+#!/usr/bin/env perl
+
+use Cwd qw(realpath);
+use File::Basename;
+my $BASE_DIR = dirname realpath __FILE__;
+chomp (my $GIT_DIR = `git rev-parse --git-dir`);
+
+{
+    my @merges = `git log --merges --pretty=format:'%H %P'`;
+    my %altered;
+    my %merges;
+    for my $merge ( reverse @merges ) {
+        chomp $merge;
+        my ($commit, @parents) = split / /, $merge;
+        $merges{$commit} = \@parents;
+        my ( $left_parent, $right_parent ) = @parents;
+        # first parent is a merge
+        if ( my $left_grandparents = $merges{ $left_parent } ) {
+            my $right_grandparent = `git show -s --pretty='format:%P' $right_parent | cut -d' ' -f1`;
+            chomp $right_grandparent;
+            if ($right_grandparent eq $left_grandparents->[1]) {
+                $altered{$commit}++;
+                $parents[0] = $left_grandparents->[0];
+                delete $merges{ $left_parent };
+                delete $altered{ $left_parent };
+            }
+        }
+    }
+
+    open my $fh, '>>', "$GIT_DIR/info/grafts";
+    for my $commit ( keys %altered ) {
+        print { $fh } join(q{ }, $commit, @{ $merges{$commit} }) . "\n";
+    }
+    close $fh;
+}
+
+{
+    use Data::Dumper;
+    $Data::Dumper::Indent = 1;
+    $Data::Dumper::Terse = 1;
+    $Data::Dumper::Sortkeys = 1;
+
+    open my $fh, '>', "$BASE_DIR/simplified-merges.pl";
+    print { $fh } Dumper(\%altered);
+    close $fh;
+}
+# git log --all --format="%H $(git log --all --format='%H' --grep='trunk/DBIx-Class@2117') $(git log --all --format='%P' --grep='trunk/DBIx-Class@2591' | cut -d' ' -f2)" --grep='trunk/DBIx-Class@2592'
+
+
+

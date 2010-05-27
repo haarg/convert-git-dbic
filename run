@@ -6,7 +6,7 @@ rm -rf DBIx-Class
 tar xzf $BASE_DIR/svn-imported.tar.gz
 cd DBIx-Class
 
-for step in $BASE_DIR/[1-9]*; do
+for step in $BASE_DIR/[1-8]*; do
     $step
 done
 

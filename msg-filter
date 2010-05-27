@@ -3,6 +3,7 @@
 use strict;
 use warnings;
 
+my $simplified_merges = do 'simplified-merges.pl';
 my $svn_id;
 my $msg = '';
 
@@ -12,6 +13,9 @@ while (<>) {
     } else {
         $msg .= $_;
     }
+}
+if ( $simplified_merges{$ENV{GIT_COMMIT}} ) {
+    $msg = '';
 }
 
 my ( $to, @from ) = ( split /\s+/, `git show -s --pretty='format:%P' $ENV{GIT_COMMIT}` );
