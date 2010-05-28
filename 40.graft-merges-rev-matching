@@ -10,6 +10,8 @@ chomp (my $GIT_DIR = `git rev-parse --git-dir`);
 my @merges = `git log --all --no-merges --format='%H' --grep='(orig r'`;
 chomp @merges;
 
+open my $fh, '>>', "$GIT_DIR/info/grafts";
+print { $fh } "# Revision matching\n";
 for my $commit (@merges) {
     my $commit_data = `git cat-file commit $commit`;
     my @matched = $commit_data =~ /^[ ]r\d+\@[^\n]+\(orig[ ]r(\d+)\)/msxg;
@@ -55,11 +57,9 @@ for my $commit (@merges) {
     chomp $commit_hashes;
     my ($commit_hash, @parent_hashes) = split /\s+/, $commit_hashes;
 
-    open my $fh, '>>', "$GIT_DIR/info/grafts";
-    print { $fh } "# Revision matching\n";
     if (! grep { $parent_commit eq $_ } @parent_hashes ) {
         print { $fh } join(q{ }, $commit_hash, @parent_hashes, $parent_commit) . "\n";
     }
-    close $fh;
 }
+close $fh;
 

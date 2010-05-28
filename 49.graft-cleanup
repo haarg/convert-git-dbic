@@ -1,5 +1,0 @@
-#!/bin/sh
-
-BASE_DIR=$(cd $(dirname $0); pwd)
-
-perl -i -ne'($c)=split;$l{$c}=$_;push@c,$c if!$s{$c}++;print(map$l{$_},@c)if eof' $(git rev-parse --git-dir)/info/grafts

@@ -29,6 +29,9 @@ my $simplified_merges = do "$BASE_DIR/cache/simplified-merges.pl";
         }
     }
 
+    my $regex = '(?:' . (join '|', keys %altered) . ')';
+    system "perl -i -pe's/^($regex )/# \$1/' $GIT_DIR/info/grafts";
+
     open my $fh, '>>', "$GIT_DIR/info/grafts";
     print { $fh } "# Simplified merges\n";
     for my $commit ( keys %altered ) {
