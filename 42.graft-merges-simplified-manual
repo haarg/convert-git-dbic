@@ -1,0 +1,33 @@
+#!/usr/bin/env perl
+
+use Cwd qw(realpath);
+use File::Basename;
+my $BASE_DIR = dirname realpath __FILE__;
+chomp (my $GIT_DIR = `git rev-parse --git-dir`);
+
+my $simplified_merges = {};
+
+open my $fh, '>>', "$GIT_DIR/info/grafts";
+print { $fh } "# Simplified merges - Manually tracked\n";
+{
+    chomp (my $commit = `git log --all --format='%H' --grep='trunk/DBIx-Class\@2592'`);
+    chomp (my $p1 = `git log --all --format='%H' --grep='trunk/DBIx-Class\@2117'`);
+    chomp (my $p2 = `git log --all --format='%P' --grep='trunk/DBIx-Class\@2591' | cut -d' ' -f2`);
+    print { $fh } join(q{ }, $commit, $p1, $p2) . "\n";
+    $simplified_merges{$commit}++;
+}
+close $fh;
+
+{
+    use Data::Dumper;
+    $Data::Dumper::Indent = 1;
+    $Data::Dumper::Terse = 1;
+    $Data::Dumper::Sortkeys = 1;
+
+    open my $fh, '>', "$BASE_DIR/cache/simplified-merges.pl";
+    print { $fh } Dumper($simplified_merges);
+    close $fh;
+}
+
+
+

@@ -6,7 +6,10 @@ rm -rf DBIx-Class
 tar xzf $BASE_DIR/svn-imported.tar.gz
 cd DBIx-Class
 
-for step in $BASE_DIR/[1-8]*; do
+[[ $1 ]] && MAX_SCRIPT=$1 || MAX_SCRIPT=99
+SCRIPTS=$( shopt -s nullglob; eval echo $BASE_DIR/{10..$MAX_SCRIPT}'.*')
+
+for step in $SCRIPTS; do
     $step
 done
 

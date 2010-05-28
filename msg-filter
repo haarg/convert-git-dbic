@@ -18,9 +18,10 @@ while (<>) {
         $msg .= $_;
     }
 }
-if ( $simplified_merges{$ENV{GIT_COMMIT}} ) {
+if ( $simplified_merges->{$ENV{GIT_COMMIT}} ) {
     $msg = '';
 }
+$msg =~ s/\A\s*-\s*([^\n]+)\n*\z/$1/ms;
 
 my ( $to, @from ) = ( split /\s+/, `git show -s --pretty='format:%P' $ENV{GIT_COMMIT}` );
 

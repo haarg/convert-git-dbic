@@ -5,6 +5,8 @@ use File::Basename;
 my $BASE_DIR = dirname realpath __FILE__;
 chomp (my $GIT_DIR = `git rev-parse --git-dir`);
 
+my $simplified_merges = do "$BASE_DIR/cache/simplified-merges.pl";
+
 {
     my @merges = `git log --merges --pretty=format:'%H %P'`;
     my %altered;
@@ -28,6 +30,7 @@ chomp (my $GIT_DIR = `git rev-parse --git-dir`);
     }
 
     open my $fh, '>>', "$GIT_DIR/info/grafts";
+    print { $fh } "# Simplified merges\n";
     for my $commit ( keys %altered ) {
         print { $fh } join(q{ }, $commit, @{ $merges{$commit} }) . "\n";
     }
@@ -40,11 +43,9 @@ chomp (my $GIT_DIR = `git rev-parse --git-dir`);
     $Data::Dumper::Terse = 1;
     $Data::Dumper::Sortkeys = 1;
 
+    @altered{ keys %$simplified_merges } = values %$simplified_merges;
     open my $fh, '>', "$BASE_DIR/cache/simplified-merges.pl";
     print { $fh } Dumper(\%altered);
     close $fh;
 }
-# git log --all --format="%H $(git log --all --format='%H' --grep='trunk/DBIx-Class@2117') $(git log --all --format='%P' --grep='trunk/DBIx-Class@2591' | cut -d' ' -f2)" --grep='trunk/DBIx-Class@2592'
-
-
 

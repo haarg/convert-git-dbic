@@ -3,6 +3,7 @@
 BASE_DIR=$(cd $(dirname $0); pwd)
 
 function output_merges () {
+    echo '# Manually tracked'
     git log --format="%H %P" --grep='branches/DBIx-Class-joins@156' | perl -pe's/^(\w+)\s+\w+\s+(\w+)$/$1 $2/'
     echo $(git log --format="%H %P" --grep='DBIx-Class/0.08/trunk@5634' | perl -pe's/\s+\w+$//') $(git rev-parse column_attr)
     git log --format="%H %P $(git rev-parse warnfree)" --grep='DBIx-Class/0.08/trunk@4902'
