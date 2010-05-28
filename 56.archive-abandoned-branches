@@ -11,7 +11,6 @@ my $branches = <<'END_BRANCHES';
     mysql_grant_privileges_sketch
     prepare_cached
     test_class
-    view-deps
 END_BRANCHES
 
 my @branches = split /\n/, $branches;
