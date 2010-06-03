@@ -8,7 +8,7 @@ git for-each-ref --format='%(refname)' refs/heads | while read branch; do
     git symbolic-ref HEAD "$branch"
 #    echo "merged branches:"
 #    git branch --merged | grep -v '^\*'
-    git branch -d $( git branch --merged | grep -v '^\*' )
+    git branch -d $( git branch --merged | grep -v '^\*' | grep -v 'master' )
 done
 
 git checkout master

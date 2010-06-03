@@ -1,0 +1,43 @@
+#!/usr/bin/env perl
+use strict;
+use warnings;
+
+use Cwd qw(realpath);
+use File::Basename;
+my $BASE_DIR = dirname realpath __FILE__;
+
+my $commit = $ENV{GIT_COMMIT};
+my @ignores;
+if (`git show -s --pretty=format:%s%n%b $commit | grep git-svn-id` =~ m{\b\Qhttp://dev.catalyst.perl.org/repos/bast/\E([^@]+)@(\d+)}) {
+    my ($url, $r) = ($1, $2);
+    my $dir;
+    open my $fh, '-|', 'svn', 'pg', '-R', 'svn:ignore', "file://$BASE_DIR/svn-mirror/$url\@$r";
+    while (my $line = <$fh>) {
+        chomp $line;
+        my $file = $line;
+        if ($line =~ m{^file://$BASE_DIR/svn-mirror/$url(\S*) - (\S+)$}) {
+            $dir = $1;
+            $file = $2;
+            $dir =~ s{^/}{};
+            $dir =~ s{/?$}{/};
+        }
+        next
+            unless $file;
+        $file = "$dir$file";
+        $file =~ s{^/}{};
+        $file =~ s{/\*$}{/};
+        $file =~ s{\b(_build|blib|inc)/?$}{$1/};
+        push @ignores, $file;
+    }
+    close $fh;
+}
+
+if (@ignores) {
+    open my $fh, '>', '.gitignore';
+    print {$fh} "$_\n" for sort @ignores;
+    close $fh;
+}
+else {
+    unlink '.gitignore';
+}
+

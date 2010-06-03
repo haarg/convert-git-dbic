@@ -5,5 +5,5 @@ BASE_DIR=$(cd $(dirname $0); pwd)
 $BASE_DIR/gen-author-pl
 
 # strip svk and git-svn noise, retaining tags
-git filter-branch --prune-empty --tag-name-filter cat --env-filter 'eval $('$BASE_DIR'/calculate-author)' --msg-filter "$BASE_DIR/msg-filter" -- --all
+git filter-branch --tree-filter "$BASE_DIR/make-ignores" --tag-name-filter cat --env-filter 'eval $('$BASE_DIR'/calculate-author)' --msg-filter "$BASE_DIR/msg-filter" --prune-empty -- --all
 

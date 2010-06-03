@@ -16,17 +16,21 @@ my $simplified_merges = do "$BASE_DIR/cache/simplified-merges.pl";
     for my $merge ( reverse @merges ) {
         chomp $merge;
         my ($commit, @parents) = split / /, $merge;
+        my $f;
         $merges{$commit} = \@parents;
-        my ( $left_parent, $right_parent ) = @parents;
-        # first parent is a merge
-        if ( my $left_grandparents = $merges{ $left_parent } ) {
-            my $right_grandparent = `git show -s --pretty='format:%P' $right_parent | cut -d' ' -f1`;
-            chomp $right_grandparent;
-            if ($right_grandparent eq $left_grandparents->[1]) {
-                $altered{$commit}++;
-                $parents[0] = $left_grandparents->[0];
-                delete $merges{ $left_parent };
-                delete $altered{ $left_parent };
+        PARENT: for my $p ( 0 .. 1 ) {
+            my $parent = $parents[ $p ];
+            my $check_ancest = $parents[ 1 - $p ];
+            my $ancest = $merges{ $check_ancest } || next;
+
+            ANCEST: for my $c ( 0 .. 1 ) {
+                if ($parent eq $ancest->[ $c ]) {
+                    $altered{$commit}++;
+                    $parents[1 - $p] = $ancest->[1 - $c];
+                    delete $merges{ $check_ancest };
+                    delete $altered{ $check_ancest };
+                    last PARENT;
+                }
             }
         }
     }
@@ -35,7 +39,7 @@ my $simplified_merges = do "$BASE_DIR/cache/simplified-merges.pl";
     system "perl -i -pe's/^($regex )/# \$1/' $GIT_DIR/info/grafts";
 
     open my $fh, '>>', "$GIT_DIR/info/grafts";
-    print { $fh } "# Simplified merges\n";
+    print { $fh } "# Redundant merges\n";
     for my $commit ( keys %altered ) {
         print { $fh } join(q{ }, $commit, @{ $merges{$commit} }) . "\n";
     }

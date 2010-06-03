@@ -38,6 +38,7 @@ my $branches = <<'END_BRANCHES';
     compose_stuff
     rs_storage_pod_fix
     find_compat
+    xt_tests
 END_BRANCHES
 
 my @branches = split /\n/, $branches;

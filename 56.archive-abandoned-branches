@@ -7,9 +7,11 @@ use File::Basename;
 my $BASE_DIR = dirname realpath __FILE__;
 
 my $branches = <<'END_BRANCHES';
+    async_storage
     manual
     mysql_grant_privileges_sketch
     prepare_cached
+    run_file_against_storage
     test_class
 END_BRANCHES
 
