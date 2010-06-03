@@ -18,6 +18,13 @@ print { $fh } "# Simplified merges - Manually tracked\n";
     print { $fh } join(q{ }, $commit, $p1, $p2) . "\n";
     $simplified_merges->{$commit}++;
 }
+{
+    chomp (my $commit = `git log --all --format='%H' --grep='DBIx-Class/0.08/trunk\@6336'`);
+    chomp (my $p1 = `git log --all --format='%H' --grep='DBIx-Class/0.08/trunk\@6321'`);
+    chomp (my $p2 = `git log --all --format='%H' --grep='DBIx-Class/0.08/branches/joined_count\@6323'`);
+    print { $fh } join(q{ }, $commit, $p1, $p2) . "\n";
+    $simplified_merges->{$commit}++;
+}
 close $fh;
 
 {

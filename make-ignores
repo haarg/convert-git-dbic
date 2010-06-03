@@ -26,7 +26,7 @@ if (`git show -s --pretty=format:%s%n%b $commit | grep git-svn-id` =~ m{\b\Qhttp
         $file = "$dir$file";
         $file =~ s{^/}{};
         $file =~ s{/\*$}{/};
-        $file =~ s{\b(_build|blib|inc)/?$}{$1/};
+        $file =~ s{\b(_build|blib|inc|t/var)/?$}{$1/};
         push @ignores, $file;
     }
     close $fh;
