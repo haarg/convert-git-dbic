@@ -2,5 +2,6 @@
 
 BASE_DIR=$(cd $(dirname $0); pwd)
 
+svnsync sync --non-interactive file://$BASE_DIR/svn-mirror
 git svn fetch --authors-prog=$BASE_DIR/author-generate
 
